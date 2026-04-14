@@ -1,6 +1,11 @@
 let albums = [];
 let currentSort = "";
 let currentFilter = "all";
+const genreSelect = new TomSelect("#genre", {
+    create: false,
+    sortField: { field: "text", direction: "asc" },
+    placeholder: "Genre (optional)",
+});
 
 const form = document.getElementById("album-form");
 const albumsContainer = document.getElementById("albums");
@@ -10,7 +15,7 @@ form.addEventListener("submit", function (e) {
 
     const title = document.getElementById("title").value.trim();
     const artist = document.getElementById("artist").value.trim();
-    const genre = document.getElementById("genre").value.trim();
+    const genre = genreSelect.getValue();
     const notes = document.getElementById("notes").value.trim();
     const duration = parseInt(document.getElementById("duration").value) || null;
 
@@ -28,6 +33,7 @@ form.addEventListener("submit", function (e) {
     albums.push(album);
     saveAlbums();
     form.reset();
+    genreSelect.clear();
     renderAlbums();
 });
 
