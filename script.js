@@ -2,9 +2,12 @@ let albums = [];
 let currentSort = "";
 let currentFilter = "all";
 const genreSelect = new TomSelect("#genre", {
-    create: false,
+    create: true,
     sortField: { field: "text", direction: "asc" },
     placeholder: "Genre (optional)",
+    createFilter: function (input) {
+        return input.length >= 2;
+    },
 });
 
 const form = document.getElementById("album-form");
