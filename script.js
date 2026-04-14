@@ -9,6 +9,7 @@ const genreSelect = new TomSelect("#genre", {
         return input.length >= 2;
     },
 });
+let currentSearch = "";
 
 const form = document.getElementById("album-form");
 const albumsContainer = document.getElementById("albums");
@@ -50,6 +51,13 @@ function formatDuration(minutes) {
 
 function getSortedAndFiltered() {
     let result = [...albums];
+
+    if (currentSearch) {
+        result = result.filter(a =>
+            a.title.toLowerCase().includes(currentSearch) ||
+            a.artist.toLowerCase().includes(currentSearch)
+        );
+    }
 
     // FILTER
     if (currentFilter === "listened") {
@@ -176,6 +184,12 @@ document.querySelectorAll(".filter-btn").forEach(function (btn) {
 
         renderAlbums();
     });
+});
+
+// Search listener
+document.getElementById("search").addEventListener("input", function () {
+    currentSearch = this.value.toLowerCase().trim();
+    renderAlbums();
 });
 
 function loadAlbums() {
