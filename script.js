@@ -98,9 +98,26 @@ function getSortedAndFiltered() {
     return result;
 }
 
+// Render how many albums user has listened to, how many to go
+function renderStats() {
+  const total = albums.length;
+  const listened = albums.filter(a => a.listened).length;
+  const toGo = total - listened;
+
+  const stats = document.getElementById("stats");
+
+  if (total === 0) {
+    stats.innerHTML = "";
+    return;
+  }
+
+  stats.innerHTML = `${total} albums · ${listened} listened · ${toGo} to go`;
+}
+
 // Render all albums to the page
 function renderAlbums() {
     albumsContainer.innerHTML = "";
+    renderStats();
 
     if (albums.length === 0) {
         albumsContainer.innerHTML = "<p style='color:#999'>No albums yet — add one above!</p>";
