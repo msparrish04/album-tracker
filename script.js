@@ -151,9 +151,22 @@ function saveAlbums() {
     localStorage.setItem("albums", JSON.stringify(albums));
 }
 
+// Listener for sorting albums
 document.getElementById("sort").addEventListener("change", function () {
     currentSort = this.value;
     renderAlbums();
+});
+
+// Listener for filtering albums
+document.querySelectorAll(".filter-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        currentFilter = btn.dataset.filter;
+
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        renderAlbums();
+    });
 });
 
 function loadAlbums() {
