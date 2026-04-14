@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Album Tracker</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
 
     <header>
-      <h1>Album Tracker</h1>
+        <h1>Album Tracker</h1>
     </header>
 
     <main>
-      <section class="add-album">
-        <h2>Add an album</h2>
-        <form id="album-form">
-          <input type="text" id="title" placeholder="Album title" required />
-          <input type="text" id="artist" placeholder="Artist" required />
-          <input type="text" id="genre" placeholder="Genre (optional)" />
-          <input type="number" id="duration" placeholder="Duration in minutes" min="1" />
-          <textarea id="notes" placeholder="Notes (optional)"></textarea>
-          <button type="submit">Add album</button>
-        </form>
-      </section>
+        <section class="add-album">
+            <h2>Add an album</h2>
+            <form id="album-form">
+                <input type="text" id="title" placeholder="Album title" required />
+                <input type="text" id="artist" placeholder="Artist" required />
+                <input type="text" id="genre" placeholder="Genre (optional)" />
+                <input type="number" id="duration" placeholder="Duration in minutes" min="1" />
+                <textarea id="notes" placeholder="Notes (optional)"></textarea>
+                <button type="submit">Add album</button>
+            </form>
+        </section>
 
-      <section class="album-list">
-        <h2>Your list</h2>
-        <div class="controls">
-            <select id="sort">
-                <option value="">Sort by...</option>
-                <option value="title">Title</option>
-                <option value="artist">Artist</option>
-                <option value="duration">Duration</option>
-                <option value="genre">Genre</option>
-            </select>
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="unlistened">Not yet listened</button>
-                <button class="filter-btn" data-filter="listened">Listened</button>
+        <section class="album-list">
+            <h2>Your list</h2>
+            <div class="controls">
+                <select id="sort">
+                    <option value="">Sort by...</option>
+                    <option value="title">Title</option>
+                    <option value="artist">Artist</option>
+                    <option value="duration">Duration</option>
+                    <option value="genre">Genre</option>
+                </select>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="unlistened">Not yet listened</button>
+                    <button class="filter-btn" data-filter="listened">Listened</button>
+                </div>
             </div>
-        </div>
-        <div id="albums"></div>
-      </section>
+            <div id="albums"></div>
+        </section>
     </main>
 
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
