@@ -27,6 +27,20 @@
 
       <section class="album-list">
         <h2>Your list</h2>
+        <div class="controls">
+            <select id="sort">
+                <option value="">Sort by...</option>
+                <option value="title">Title</option>
+                <option value="artist">Artist</option>
+                <option value="duration">Duration</option>
+                <option value="genre">Genre</option>
+            </select>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="unlistened">Not yet listened</button>
+                <button class="filter-btn" data-filter="listened">Listened</button>
+            </div>
+        </div>
         <div id="albums"></div>
       </section>
     </main>

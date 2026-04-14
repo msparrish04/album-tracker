@@ -1,4 +1,6 @@
 let albums = [];
+let currentSort = "";
+let currentFilter = "all";
 
 const form = document.getElementById("album-form");
 const albumsContainer = document.getElementById("albums");
