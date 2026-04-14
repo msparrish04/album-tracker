@@ -10,6 +10,7 @@ form.addEventListener("submit", function (e) {
   const artist = document.getElementById("artist").value.trim();
   const genre = document.getElementById("genre").value.trim();
   const notes = document.getElementById("notes").value.trim();
+  const duration = parseInt(document.getElementById("duration").value) || null;
 
   // Album object
   const album = {
@@ -17,6 +18,7 @@ form.addEventListener("submit", function (e) {
     title,
     artist,
     genre,
+    duration,
     notes,
     listened: false,
   };
@@ -26,6 +28,14 @@ form.addEventListener("submit", function (e) {
   form.reset();
   renderAlbums();
 });
+
+function formatDuration(minutes) {
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  if (h === 0) return `${m} min`;
+  if (m === 0) return `${h} hr`;
+  return `${h} hr ${m} min`;
+}
 
 // Render all albums to the page
 function renderAlbums() {
@@ -46,6 +56,7 @@ function renderAlbums() {
         <h3>${album.title}</h3>
         <p class="artist">${album.artist}</p>
         ${album.genre ? `<p class="genre">${album.genre}</p>` : ""}
+        ${album.duration ? `<p class="duration">${formatDuration(album.duration)}</p>` : ""}
         ${album.notes ? `<p class="notes">${album.notes}</p>` : ""}
       </div>
       <div class="album-actions">
