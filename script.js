@@ -42,16 +42,40 @@ function formatDuration(minutes) {
 function getSortedAndFiltered() {
     let result = [...albums];
 
-    // Filter
+    // FILTER
     if (currentFilter === "listened") {
         result = result.filter(a => a.listened);
     } else if (currentFilter === "unlistened") {
         result = result.filter(a => !a.listened);
     }
 
-    // Sort
+    // SORT
+    // Sort by title
     if (currentSort === "title") {
         result.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    // Sort by artist
+    if (currentSort === "artist") {
+        result.sort((a, b) => a.artist.localeCompare(b.artist));
+    }
+
+    // Sort by duration
+    if (currentSort === "duration") {
+        result.sort((a, b) => {
+            if (a.duration === null) return 1;
+            if (b.duration === null) return -1;
+            return a.duration - b.duration;
+        });
+    }
+
+    // Sort by genre
+    if (currentSort === "genre") {
+        result.sort((a, b) => {
+            if (!a.genre) return 1;
+            if (!b.genre) return -1;
+            return a.genre.localeCompare(b.genre);
+        });
     }
 
     return result;
