@@ -22,6 +22,7 @@ form.addEventListener("submit", function (e) {
   };
 
   albums.push(album);
+  saveAlbums();
   form.reset();
   renderAlbums();
 });
@@ -78,6 +79,7 @@ function toggleListened(id) {
     }
     return album;
   });
+  saveAlbums();
   renderAlbums();
 }
 
@@ -85,7 +87,21 @@ function deleteAlbum(id) {
   albums = albums.filter(function (album) {
     return album.id !== id;
   });
+  saveAlbums();
   renderAlbums();
 }
 
+// Use local Storage to save albums
+function saveAlbums() {
+  localStorage.setItem("albums", JSON.stringify(albums));
+}
+
+function loadAlbums() {
+  const saved = localStorage.getItem("albums");
+  if (saved) {
+    albums = JSON.parse(saved);
+  }
+}
+
+loadAlbums();
 renderAlbums();
