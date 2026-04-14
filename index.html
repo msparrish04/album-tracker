@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Album Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
 
+    <header>
+      <h1>Album Tracker</h1>
+      <p>Your personal listening list</p>
+    </header>
+
+    <main>
+      <section class="add-album">
+        <h2>Add an album</h2>
+        <form id="album-form">
+          <input type="text" id="title" placeholder="Album title" required />
+          <input type="text" id="artist" placeholder="Artist" required />
+          <input type="text" id="genre" placeholder="Genre (optional)" />
+          <textarea id="notes" placeholder="Notes (optional)"></textarea>
+          <button type="submit">Add album</button>
+        </form>
+      </section>
+
+      <section class="album-list">
+        <h2>Your list</h2>
+        <div id="albums"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
