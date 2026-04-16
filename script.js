@@ -96,6 +96,19 @@ function getSortedAndFiltered() {
         });
     }
 
+    // Sort by star rating
+    if (currentSort === "rating") {
+        result.sort((a, b) => {
+            if (!a.listened && !b.listened) return 0;
+            if (!a.listened) return 1;
+            if (!b.listened) return -1;
+            if (a.rating === null && b.rating === null) return 0;
+            if (a.rating === null) return 1;
+            if (b.rating === null) return -1;
+            return b.rating - a.rating;
+        });
+    }
+
     return result;
 }
 
