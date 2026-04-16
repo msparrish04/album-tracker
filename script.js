@@ -31,6 +31,7 @@ form.addEventListener("submit", function (e) {
         genre,
         duration,
         notes,
+        rating: null,
         listened: false,
     };
 
@@ -114,6 +115,14 @@ function renderStats() {
   stats.innerHTML = `${total} albums · ${listened} listened · ${toGo} to go`;
 }
 
+function renderStars(rating) {
+  let stars = "";
+  for (let i = 1; i <= 5; i++) {
+    stars += `<span class="star ${rating >= i ? "filled" : ""}" data-value="${i}">★</span>`;
+  }
+  return `<div class="stars">${stars}</div>`;
+}
+
 // Render all albums to the page
 function renderAlbums() {
     albumsContainer.innerHTML = "";
@@ -136,6 +145,7 @@ function renderAlbums() {
         ${album.genre ? `<p class="genre">${album.genre}</p>` : ""}
         ${album.duration ? `<p class="duration">${formatDuration(album.duration)}</p>` : ""}
         ${album.notes ? `<p class="notes">${album.notes}</p>` : ""}
+        ${album.listened ? renderStars(album.rating) : ""}
       </div>
       <div class="album-actions">
         <button class="btn-listened" data-id="${album.id}">

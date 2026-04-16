@@ -219,3 +219,24 @@ select#sort {
   color: #888;
   margin-bottom: 1rem;
 }
+
+.stars {
+  display: flex;
+  gap: 0.15rem;
+  margin-top: 0.5rem;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.1s;
+}
+
+.star.filled {
+  color: #f5a623;
+}
+
+.star:hover {
+  color: #f5a623;
+}
