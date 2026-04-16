@@ -101,26 +101,37 @@ function getSortedAndFiltered() {
 
 // Render how many albums user has listened to, how many to go
 function renderStats() {
-  const total = albums.length;
-  const listened = albums.filter(a => a.listened).length;
-  const toGo = total - listened;
+    const total = albums.length;
+    const listened = albums.filter(a => a.listened).length;
+    const toGo = total - listened;
 
-  const stats = document.getElementById("stats");
+    const stats = document.getElementById("stats");
 
-  if (total === 0) {
-    stats.innerHTML = "";
-    return;
-  }
+    if (total === 0) {
+        stats.innerHTML = "";
+        return;
+    }
 
-  stats.innerHTML = `${total} albums · ${listened} listened · ${toGo} to go`;
+    stats.innerHTML = `${total} albums · ${listened} listened · ${toGo} to go`;
 }
 
 function renderStars(rating) {
-  let stars = "";
-  for (let i = 1; i <= 5; i++) {
-    stars += `<span class="star ${rating >= i ? "filled" : ""}" data-value="${i}">★</span>`;
-  }
-  return `<div class="stars">${stars}</div>`;
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+        stars += `<span class="star ${rating >= i ? "filled" : ""}" data-value="${i}">★</span>`;
+    }
+    return `<div class="stars">${stars}</div>`;
+}
+
+function rateAlbum(id, rating) {
+    albums = albums.map(function (album) {
+        if (album.id === id) {
+            return { ...album, rating: rating };
+        }
+        return album;
+    });
+    saveAlbums();
+    renderAlbums();
 }
 
 // Render all albums to the page
@@ -136,6 +147,7 @@ function renderAlbums() {
     getSortedAndFiltered().forEach(function (album) {
         const card = document.createElement("div");
         card.classList.add("album-card");
+        card.dataset.id = album.id;
         if (album.listened) card.classList.add("listened");
 
         card.innerHTML = `
@@ -167,6 +179,14 @@ function renderAlbums() {
     document.querySelectorAll(".btn-delete").forEach(function (btn) {
         btn.addEventListener("click", function () {
             deleteAlbum(Number(btn.dataset.id));
+        });
+    });
+
+    document.querySelectorAll(".star").forEach(function (star) {
+        star.addEventListener("click", function () {
+            const id = Number(star.closest(".album-card").dataset.id);
+            const rating = Number(star.dataset.value);
+            rateAlbum(id, rating);
         });
     });
 }
